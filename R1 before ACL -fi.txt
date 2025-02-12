@@ -1,0 +1,104 @@
+service password-encryption
+!
+hostname R1
+!
+!
+!
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+username Harsimran secret 5 $1$mERr$jnsDknF4Wwkgx2tzKw49w1
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+ip domain-name brar.com
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 100.100.100.1 255.255.255.0
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1.8
+ description Management Network
+ encapsulation dot1Q 8
+ ip address 10.8.0.1 255.255.255.0
+!
+interface FastEthernet0/1.9
+ description Operations
+ encapsulation dot1Q 9
+ ip address 10.9.0.1 255.255.255.0
+!
+interface FastEthernet0/1.10
+ description Sales Network
+ encapsulation dot1Q 10
+ ip address 10.10.0.1 255.255.255.0
+!
+interface FastEthernet0/1.1000
+ description Native Network
+ no ip address
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CUnauthorized Access is Prohibited^C
+!
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login local
+ transport input ssh
+line vty 5 15
+ password 7 0822455D0A16
+ login
+!
+!
+!
+end
