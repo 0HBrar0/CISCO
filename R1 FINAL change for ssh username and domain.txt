@@ -120,7 +120,7 @@ line vty 5 15
 !
 !SSH FIX
 !make sure config mode is on
-username ABC secret $cisco123!
+username ABCD secret $cisco123!
 ip domain name lab5.com
 crypto key generate rsa general-keys modulus 1024
 line vty 0 4
